@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+interface Props {
+    title: string;
+    description?: string;
+}
+const {
+    title,
+    description = "Shashank Chikattimala - Senior Software Engineer building production AI systems: RAG, agents and LLM infrastructure.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta name="generator" content={Astro.generator} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <title>{title}</title>
+    </head>
+    <body>
+        <header class="site">
+            <div class="wrap">
+                <a class="brand" href="/">
+                    Shashank Chikattimala
+                </a>
+                <nav aria-label="Main">
+                    <a href="/projects">Projects</a>
+                    <a href="/about">About</a>
+                    <a href="/about#contact">Contact</a>
+                    <a
+                        class="nav-resume"
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Resume
+                    </a>
+                </nav>
+            </div>
+        </header>
+        <main class="wrap">
+            <slot />
+        </main>
+        <footer class="site">
+            <div class="wrap">
+                <span>&copy; {new Date().getFullYear()} Shashank Chikattimala</span>
+                <span>
+                    <a href="mailto:shashankuidev9@gmail.com">Email</a> &middot;
+                    <a href="https://github.com/shashankcm">GitHub</a> &middot;
+                    <a href="https://www.linkedin.com/in/shashankcm90">LinkedIn</a>
+                </span>
+            </div>
+        </footer>
+    </body>
+</html>
