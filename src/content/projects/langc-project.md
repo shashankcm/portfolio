@@ -19,5 +19,5 @@ A hands-on lab where I built each layer of a RAG system separately and compared 
 - **Cost optimization:** a module for reducing LLM spend.
 - **Monitoring:** LangSmith tracing and metrics.
 
-## Why it matters
-The hybrid search and chunking work here is the prototype for the retrieval upgrade in kube-rag.
+## What it is not
+Each module is a demo on a small sample corpus, not a benchmark. There are no automated tests and no retrieval-quality numbers here. The hybrid-search and chunking examples are prototypes of techniques that kube-rag is meant to evaluate against a labelled set, so I treat their behaviour as illustrative until that comparison is done.
