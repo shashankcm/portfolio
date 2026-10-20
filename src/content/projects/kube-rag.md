@@ -10,7 +10,22 @@ repo: https://github.com/shashankcm/kube-rag
 Most RAG demos stop at "it answers questions". I wanted to know whether each part of the pipeline actually helps, and to catch it when a change makes things worse.
 
 ## What it is
-An agentic RAG service over Kubernetes documentation: a planner classifies each question, a retriever pulls 15 candidates from Qdrant and a cross-encoder reranks them to 5, and a responder answers through an LLM gateway with fallback. NeMo Guardrails sit in front, with tracing in Logfire and LangSmith.
+An agentic RAG service over Kubernetes documentation: a planner classifies each question, a retriever pulls 15 candidates from Qdrant and a cross-encoder reranks them to 5, and a responder answers through an LLM gateway with fallback. NeMo Guardrails sit in front (intents matched by embedding similarity, with no LLM call), with tracing in Logfire and LangSmith.
+
+## See it
+Screenshots from a local run. There is no hosted demo, because a public endpoint would let anyone spend the vector database and LLM quotas.
+
+![The chat UI answering a question and listing the retrieved sources](/projects/kube-rag/01-chat-answer.webp)
+*A question with the sources the answer is built from. The "Search Term" line shows the planner's raw rewrite (note the duplicated text, one of the defects found during evaluation). On a first question the retriever searches with the user's own words, so this label is misleading. It is a known issue.*
+
+![The chat UI showing "Intent: Guardrails Fired" and "Retrieval: Skipped" for a jailbreak attempt](/projects/kube-rag/02-guardrail-block.webp)
+*A jailbreak attempt stopped at the gate: retrieval is skipped and no LLM is called.*
+
+![Terminal output of the paired comparison between runs with and without the reranker](/projects/kube-rag/03-eval-compare.webp)
+*The paired reranker comparison from one command, with no API keys.*
+
+![GitHub Actions showing two passing CI runs](/projects/kube-rag/04-ci-passing.webp)
+*CI passing on the pull request and on main.*
 
 ## How I measured it
 - **A 65-question golden set** over six documents mixed with about 60 unrelated distractor files, plus 10 questions the corpus cannot answer.
@@ -36,6 +51,7 @@ An agentic RAG service over Kubernetes documentation: a planner classifies each 
 ## Engineering that made the numbers trustworthy
 - Found that a large daily token limit on the guardrail model had silently failed 28 of 75 requests, because the API returns HTTP 200 on errors and my first runner scored them as answers. That is how a "0% refusal rate" almost got reported.
 - Found two gold labels that were incomplete when the retriever returned a document that also held the answer. Fixed them, recorded the change in the dataset's changelog, and rescored every saved run offline.
+- **Found that my own guardrail silently did nothing.** Screenshots for this page showed a joke request answered and a jailbreak phrase sailing through. The cause: the guard model, a reasoning model, answered the question instead of naming an intent, so no rule matched, and each check cost three LLM calls (a likely contributor to the daily quota failure above). I diagnosed it from NeMo's own trace, then replaced LLM classification with embedding similarity. I chose the threshold from a sweep and checked it on messages written before I looked at any result: 10 of 10 jailbreaks blocked, 0 of 20 legitimate questions blocked, and zero LLM calls. The same sweep showed that a naive version would have refused real questions, which is why I measured instead of switching it on.
 - Made the embedding libraries load lazily, so the test suite runs in a few seconds with no PyTorch, no API keys and no `.env`. 92 tests, run in GitHub Actions.
 - CI also checks that committed results use the current gold labels and stay above a conservative floor, because it cannot re-run retrieval itself.
 
@@ -44,6 +60,7 @@ An agentic RAG service over Kubernetes documentation: a planner classifies each 
 - Single-turn only: whether keeping the planner's rewrite for follow-up questions helps is not measured.
 - Refusal is measured on 10 questions, so the interval is wide.
 - Answer quality (faithfulness) has not been run on this golden set.
+- The guardrail is strong on jailbreaks and weak on general off-topic requests: it blocked only 4 of 14 held-out off-topic messages, because the small embedding model scores topics like cooking or art history far from the examples, and a lower threshold starts blocking real questions. Those requests reach the pipeline, where a request the planner treats as conversational has no topic restriction.
 
 ## What I would do next
 Write a multi-turn test set, add harder paraphrased and exact-identifier questions, then test parent-child chunking (large pages are stored as single chunks) and BM25 hybrid search against this baseline. The weak spots, not a bigger headline number, decide what to build.
