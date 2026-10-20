@@ -40,7 +40,7 @@ a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-
 
 /* header */
 header.site { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--border); }
-header.site .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: .9rem; }
+header.site .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .4rem 1rem; padding-block: .9rem; }
 header.site nav { display: flex; gap: 1.4rem; align-items: center; }
 header.site a { text-decoration: none; color: var(--muted); font-size: .96rem; }
 header.site a:hover, header.site a[aria-current="page"] { color: var(--text); }
@@ -108,4 +108,9 @@ footer.site a { color: var(--muted); }
 .prose th, .prose td { border: 1px solid var(--border); padding: .45rem .7rem; text-align: left; }
 .prose pre { overflow-x: auto; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
 .prose { max-width: 72ch; }
+@media (max-width: 520px) {
+  header.site nav { gap: .8rem; flex-wrap: wrap; }
+  header.site a { font-size: .9rem; }
+  .prose table { display: block; overflow-x: auto; }  /* wide results tables scroll instead of overflowing */
+}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
