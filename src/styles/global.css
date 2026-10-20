@@ -108,6 +108,8 @@ footer.site a { color: var(--muted); }
 .prose th, .prose td { border: 1px solid var(--border); padding: .45rem .7rem; text-align: left; }
 .prose pre { overflow-x: auto; padding: 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
 .prose { max-width: 72ch; }
+.prose img { display: block; max-width: 100%; height: auto; margin: 1.4rem 0 .5rem; border: 1px solid var(--border); border-radius: 10px; }
+.prose img + em { display: block; margin-bottom: 1.6rem; color: var(--muted); font-size: .92rem; font-style: normal; }
 @media (max-width: 520px) {
   header.site nav { gap: .8rem; flex-wrap: wrap; }
   header.site a { font-size: .9rem; }
