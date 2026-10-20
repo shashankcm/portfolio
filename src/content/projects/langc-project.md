@@ -1,8 +1,8 @@
 ---
 title: "RAG Engineering Lab"
-summary: Working modules for chunking, embeddings, vector stores, BM25 + dense hybrid search, cost control and tracing.
+summary: Working demos of chunking, embeddings, vector stores, BM25 + dense hybrid search, cost control and tracing. No tests or retrieval numbers yet; none of these demos has been measured against a labelled set.
 stack: [Python, LangChain, Chroma, pgvector, Supabase, LangSmith]
-status: shipped
+status: in-progress
 order: 3
 repo: https://github.com/shashankcm/langc-project
 ---

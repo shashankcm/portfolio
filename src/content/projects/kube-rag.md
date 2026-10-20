@@ -1,6 +1,6 @@
 ---
 title: "kube-rag: Agentic RAG, measured"
-summary: A LangGraph RAG service over Kubernetes docs whose retrieval is evaluated with no LLM judge, paired confidence intervals and a regression-tested golden set.
+summary: A LangGraph RAG service over Kubernetes docs, evaluated with no LLM judge on a 65-question golden set. The reranker adds +0.077 hit@5 and +0.106 MRR (paired 95% intervals exclude zero).
 stack: [Python, LangGraph, FastAPI, Qdrant, FlashRank, NeMo Guardrails, Portkey, pytest, GitHub Actions]
 status: shipped
 order: 1

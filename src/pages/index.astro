@@ -4,10 +4,9 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 const projects = (await getCollection('projects')).filter((p) => p.data.status !== 'planned').sort((a, b) => a.data.order - b.data.order);
 const skills = [
-  ['AI & agents', 'LangGraph, LlamaIndex, LangChain, agentic RAG, multi-agent routing'],
-  ['Retrieval & data', 'Qdrant, Milvus, Redis, MongoDB, SQL, hybrid search'],
-  ['Safety & evaluation', 'NeMo Guardrails, Ragas, TruLens, LangSmith'],
-  ['LLM serving', 'vLLM, TensorRT-LLM, Triton, AWQ/GGUF quantization'],
+  ['AI & agents', 'LangGraph, LangChain, agentic RAG, FastAPI services'],
+  ['Retrieval & data', 'Qdrant, Chroma, pgvector, hybrid search (BM25 + dense), FlashRank reranking'],
+  ['Safety & evaluation', 'NeMo Guardrails, retrieval metrics with bootstrap intervals, LangSmith tracing'],
   ['Platform', 'Docker, Kubernetes, Terraform, GitHub Actions, Azure DevOps'],
   ['Product engineering', 'Python, TypeScript, FastAPI, Node.js, React, Next.js'],
 ];
@@ -27,15 +26,13 @@ const skills = [
   <section class="stats" aria-label="Highlights">
     <div class="stat"><b>15 yrs</b><span>shipping enterprise software</span></div>
     <div class="stat"><b>8</b><span>engineers led at Lowe's</span></div>
-    <div class="stat"><b>&minus;30%</b><span>release cycle time</span></div>
-    <div class="stat"><b>&minus;20%</b><span>production bugs</span></div>
   </section>
 
   <h2><small>Featured work</small>AI projects</h2>
   <div class="cards">
     {projects.map((p) => <ProjectCard id={p.id} {...p.data} />)}
   </div>
-  <p class="lead" style="margin-top:1.2rem;font-size:.95rem">Each project has a case study with the architecture and what's built so far. More are on the way, and numbers are published only after I've run the evaluation.</p>
+  <p class="lead" style="margin-top:1.2rem;font-size:.95rem">Each project has a case study with the architecture, what's built so far, and the limits. Next up: a CI evaluation engine for LLM guardrails, and a small-model serving benchmark. Numbers are published only after they have been measured.</p>
 
   <h2><small>Toolbox</small>What I work with</h2>
   <div class="skills">
