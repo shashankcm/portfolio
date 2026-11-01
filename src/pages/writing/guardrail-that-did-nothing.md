@@ -3,6 +3,8 @@ layout: ../../layouts/Base.astro
 title: "My guardrail did nothing for weeks, and nothing I had written noticed"
 ---
 
+[← All writing](/writing)
+
 The first screenshot I took for my portfolio showed the guardrail doing nothing. A joke request got a joke. A jailbreak phrase went straight through to the pipeline. The page said "Intent: Technical" where it should have said "Guardrails Fired".
 
 I had written tests, a CI badge and a README. None of them had ever sent a jailbreak through the guardrail and checked the result.
