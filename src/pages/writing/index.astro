@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+const posts = [
+  {
+    title: "My guardrail did nothing for weeks, and nothing I had written noticed",
+    summary: "How a jailbreak filter silently failed, why a 10-message test missed it, and what a 340-message set showed.",
+    href: "/writing/guardrail-that-did-nothing",
+    date: "November 2026",
+  },
+];
+---
+<Base title="Writing | Shashank Chikattimala">
+  <h1>Writing</h1>
+  <p class="lead">Notes from building production AI systems: what broke, what I measured, and what I'd do differently.</p>
+  <ul class="timeline">
+    {posts.map((p) => (
+      <li>
+        <h3><a href={p.href}>{p.title}</a></h3>
+        <p class="meta">{p.date}</p>
+        <p>{p.summary}</p>
+      </li>
+    ))}
+  </ul>
+</Base>
