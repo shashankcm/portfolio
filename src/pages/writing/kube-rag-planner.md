@@ -21,6 +21,9 @@ The rewrites added generic words such as "Kubernetes documentation and usage gui
 
 The comparison is paired: the same 65 questions, scored both ways. Searching with the user's own words gained +0.090 MRR, with a bootstrap interval of +0.038 to +0.144. On hit@5 the gain was +0.031, with an interval of 0.000 to +0.077, which is borderline.
 
+![Terminal output of the paired comparison between runs with and without the reranker](/projects/kube-rag/03-eval-compare.webp)
+*The same paired comparison, from one command. This one measures the reranker, not the planner, but it uses the same method.*
+
 ## What I changed
 
 On a first question, the retriever now searches with the user's own words. A follow-up question still uses the rewrite, because that is the reason the planner exists: it resolves references like "what about its limits?"

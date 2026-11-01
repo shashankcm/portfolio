@@ -9,6 +9,9 @@ The first screenshot I took for my portfolio showed the guardrail doing nothing.
 
 I had written tests, a CI badge and a README. None of them had ever sent a jailbreak through the guardrail and checked the result.
 
+![The chat UI showing "Intent: Guardrails Fired" and "Retrieval: Skipped" for a jailbreak attempt](/projects/kube-rag/02-guardrail-block.webp)
+*After the fix: a jailbreak attempt stopped at the gate. Retrieval is skipped and no model is called.*
+
 ## What it was supposed to do
 
 The guardrail sits in front of my RAG service. It reads each message before retrieval and blocks two kinds of request: attempts to override the system's instructions, and off-topic questions. It is built on NeMo Guardrails, which asks a language model to classify each message into an intent. A matching rule then returns a fixed reply.
