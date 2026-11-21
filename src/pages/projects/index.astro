@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import ProjectCard from "../../components/ProjectCard.astro";
+import ProjectRow from "../../components/ProjectRow.astro";
 import Base from "../../layouts/Base.astro";
 const projects = (await getCollection("projects")).sort(
     (a, b) => a.data.order - b.data.order,
@@ -10,12 +10,12 @@ const projects = (await getCollection("projects")).sort(
 <Base title="Projects | Shashank Chikattimala">
     <h1>Projects</h1>
     <p class="lead">
-        Each project has a case study: problem, architecture, decisions and
-        measured results.
+        Each project has a case study: the problem, the architecture, the
+        decisions, and the measured results.
     </p>
-    <div class="cards">
+    <ul class="rows">
         {projects.map((p) => (
-            <ProjectCard id={p.id} {...p.data} />
+            <ProjectRow id={p.id} {...p.data} />
         ))}
-    </div>
+    </ul>
 </Base>

@@ -12,30 +12,25 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, summary, stack, status, repo, demo } = project.data;
+const label = status === "in-progress" ? "In progress" : status === "shipped" ? "Shipped" : "Planned";
 ---
 
 <Base title={`${title} | Shashank Chikattimala`} description={summary}>
-    <p>
-        <a href="/projects">&larr; All projects</a>
-    </p>
-    <h1>{title}</h1>
-    <p class="lead">{summary}</p>
-    <ul class="tags">
+    <p class="back"><a href="/projects">&larr; All projects</a></p>
+    <h1 class="intro">{title}</h1>
+    <p class="lead intro d1">{summary}</p>
+    <p class="intro d1"><span class={`badge ${status}`}>{label}</span></p>
+    <ul class="tags intro d2">
         {stack.map((s) => (
             <li>{s}</li>
         ))}
     </ul>
-    <p class="status">Status: {status}</p>
-    <div class="cta">
+    <div class="cta intro d2">
         {repo && (
-            <a class="btn" href={repo}>
-                Source
-            </a>
+            <a class="btn" href={repo}>Source</a>
         )}
         {demo && (
-            <a class="btn primary" href={demo}>
-                Live demo
-            </a>
+            <a class="btn primary" href={demo}>Live demo</a>
         )}
     </div>
     <article class="prose">

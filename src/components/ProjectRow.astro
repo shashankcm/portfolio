@@ -1,0 +1,13 @@
+---
+interface Props { id: string; title: string; summary: string; stack: string[]; status: string }
+const { id, title, summary, stack, status } = Astro.props;
+const label = status === 'in-progress' ? 'In progress' : status === 'shipped' ? 'Shipped' : 'Planned';
+---
+<li class="row reveal">
+  <a class="row-link" href={`/projects/${id}`}>
+    <span class="row-title">{title}</span>
+    <span class="row-side"><span class={`badge ${status}`}>{label}</span></span>
+    <span class="row-summary">{summary}</span>
+    <span class="row-stack">{stack.join(" · ")}</span>
+  </a>
+</li>

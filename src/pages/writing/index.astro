@@ -22,14 +22,16 @@ const posts = [
 ];
 ---
 <Base title="Writing | Shashank Chikattimala">
-  <h1>Writing</h1>
-  <p class="lead">Notes from building production AI systems: what broke, what I measured, and what I'd do differently.</p>
-  <ul class="timeline">
+  <h1 class="intro">Writing</h1>
+  <p class="lead intro d1">Notes from building production AI systems: what broke, what I measured, and what I'd do differently.</p>
+  <ul class="rows">
     {posts.map((p) => (
-      <li>
-        <h3><a href={p.href}>{p.title}</a></h3>
-        <p class="meta">{p.date}</p>
-        <p>{p.summary}</p>
+      <li class="row reveal">
+        <a class="row-link" href={p.href}>
+          <span class="row-title">{p.title}</span>
+          <span class="row-side"><span class="label">{p.date}</span></span>
+          <span class="row-summary">{p.summary}</span>
+        </a>
       </li>
     ))}
   </ul>

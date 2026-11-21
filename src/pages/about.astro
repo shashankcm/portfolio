@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 const jobs = [
-  ['Senior Software Engineer', "Lowe's", '2023 - present', 'Lead a front-end team on the order management platform. Moved a monolith to Webpack Module Federation micro frontends so teams ship independently. Cut page loads about 25% with Next.js ISR and another 20% with code-splitting.'],
+  ['Senior Software Engineer', "Lowe's", '2023 - present', 'Leads a front-end team on the order management platform. Moved a monolith to Webpack Module Federation micro frontends so teams ship independently. Cut page loads about 25% with Next.js ISR and another 20% with code-splitting.'],
   ['Sr. Full Stack Developer', 'Walmart (via EPAM Systems)', '2020 - 2023', 'Standardized release engineering on Azure DevOps, Terraform and Ansible. Built AKS and self-hosted Kubernetes clusters and Data Factory ingestion pipelines.'],
   ['Sr. Front End Developer', 'Bridgewater Associates (via EPAM Systems)', '2020', 'Built a tokenized fuzzy search with IndexedDB caching, plus visual regression testing and CI/CD on AWS.'],
   ['Full Stack Developer', 'State of Arkansas DHS (via eSystems Inc)', '2017 - 2019', 'Built a drag-and-drop form builder, serverless intake APIs on AWS, an offline-capable PWA and customized IBM Curam for healthcare eligibility.'],
@@ -18,46 +18,46 @@ const principles = [
 ];
 ---
 <Base title="About | Shashank Chikattimala">
-  <h1>About</h1>
-  <p class="lead">I've spent most of my career shipping enterprise software: a healthcare eligibility system for a state agency, release pipelines for Walmart, and the order platform at Lowe's. Now I'm building the part of AI that usually gets skipped: systems that can prove they work.</p>
-  <p class="lead">Today I lead a front-end team at Lowe's. Outside work I build retrieval, agents, guardrails and evaluation, and I test them the way I'd test anything going to production: labelled data, paired comparisons, and checks that run in CI.</p>
-  <p class="lead">I'm looking for AI engineering roles where owning quality is part of the job, not an afterthought.</p>
-  <div class="cta">
+  <h1 class="intro">About</h1>
+  <p class="lead intro d1">I've spent most of my career shipping enterprise software: a healthcare eligibility system for a state agency, release pipelines at Walmart, and the order platform at Lowe's. Now I build the part of AI that usually gets skipped: systems that can prove they work.</p>
+  <p class="lead intro d1">I lead a front-end team at Lowe's. Outside work I build retrieval, agents, guardrails and evaluation, tested with labelled data, paired comparisons, and checks that run in CI.</p>
+  <p class="lead intro d2">I'm looking for AI engineering roles where owning quality is part of the job, not an afterthought.</p>
+  <div class="cta intro d2">
     <a class="btn primary" href="/resume.pdf" target="_blank" rel="noopener">Download resume</a>
     <a class="btn" href="#contact">Get in touch</a>
   </div>
 
-  <h2><small>Now building</small>What I'm working on</h2>
-  <ul class="timeline">
+  <h2>Now building</h2>
+  <ul class="entries">
     {building.map(([title, desc, href]) => (
-      <li><h3><a href={href}>{title}</a></h3><p>{desc}</p></li>
+      <li class="reveal"><h3><a href={href}>{title}</a></h3><p>{desc}</p></li>
     ))}
   </ul>
 
-  <h2><small>How I work</small>Principles</h2>
-  <ul class="timeline">
+  <h2>How I work</h2>
+  <ul class="entries">
     {principles.map(([title, desc]) => (
-      <li><h3>{title}</h3><p>{desc}</p></li>
+      <li class="reveal"><h3>{title}</h3><p>{desc}</p></li>
     ))}
   </ul>
 
-  <h2><small>Recommendation</small>What a colleague says</h2>
-  <blockquote class="quote">
+  <h2>What a colleague says</h2>
+  <blockquote class="quote reveal">
     <p>"I had the privilege of working with Shashank at Esystems for 2 years. He is a highly organized, goal oriented, independent and hard working perfectionist always ready to put all his energy and stamina to get the job done. Highly educated and technically sound person in Front End technologies and Is able to work in Agile environment. Shashank is probably one of the best Front End developer, I have ever met in my life and one of the smartest professionals I have ever worked with."</p>
     <footer>Aditya Manjrekar, MTS 1, Software Engineer at eBay. Worked with Shashank on the same team, 2019. <a href="https://www.linkedin.com/in/shashankcm90">View on LinkedIn</a></footer>
   </blockquote>
 
-  <h2><small>Experience</small>Where I've worked</h2>
-  <ul class="timeline">
+  <h2>Experience</h2>
+  <ul class="entries">
     {jobs.map(([role, co, when, desc]) => (
-      <li><h3>{role}, {co}</h3><p class="meta">{when}</p><p>{desc}</p></li>
+      <li class="reveal"><h3>{role}, {co}</h3><p class="meta">{when}</p><p>{desc}</p></li>
     ))}
   </ul>
 
-  <h2><small>Education</small>Background</h2>
-  <p class="lead">M.S. Computer Science, University of Michigan-Flint (2017). B.Tech Information Technology, JNTU (2011). IBM Curam Certified Application Developer v7.</p>
+  <h2>Education</h2>
+  <p>M.S. Computer Science, University of Michigan-Flint (2017). B.Tech Information Technology, JNTU (2011). IBM Curam Certified Application Developer v7.</p>
 
-  <h2 id="contact"><small>Contact</small>Let's talk</h2>
+  <h2 id="contact">Contact</h2>
   <p class="lead">The quickest way to reach me is email. I'm happy to talk about AI engineering roles.</p>
   <div class="cta">
     <a class="btn primary" href="mailto:shashankuidev9@gmail.com">shashankuidev9@gmail.com</a>

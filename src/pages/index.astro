@@ -1,81 +1,64 @@
 ---
 import Base from "../layouts/Base.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import ProjectRow from "../components/ProjectRow.astro";
 import { getCollection } from "astro:content";
 const projects = (await getCollection("projects"))
     .filter((p) => p.data.status !== "planned")
     .sort((a, b) => a.data.order - b.data.order);
-const skills = [
-    ["AI & agents", "LangGraph, LangChain, agentic RAG, FastAPI services"],
-    [
-        "Retrieval & data",
-        "Qdrant, Chroma, pgvector, hybrid search (BM25 + dense), FlashRank reranking",
-    ],
-    [
-        "Safety & evaluation",
-        "NeMo Guardrails, retrieval metrics with bootstrap intervals, LangSmith tracing",
-    ],
+const stack = [
+    ["AI and agents", "LangGraph, LangChain, agentic RAG, FastAPI services"],
+    ["Retrieval and data", "Qdrant, Chroma, pgvector, hybrid search (BM25 + dense), FlashRank reranking"],
+    ["Safety and evaluation", "NeMo Guardrails, retrieval metrics with bootstrap intervals, LangSmith tracing"],
     ["Platform", "Docker, Kubernetes, Terraform, GitHub Actions, Azure DevOps"],
-    ["MLOps (future project)", "vLLM, AWQ, GGUF, MLflow, Prometheus, Grafana"],
-    [
-        "Product engineering",
-        "Python, TypeScript, FastAPI, Node.js, React, Next.js",
-    ],
+    ["Product engineering", "Python, TypeScript, FastAPI, Node.js, React, Next.js"],
+    ["Planned (MLOps)", "vLLM, AWQ, GGUF, MLflow, Prometheus, Grafana"],
 ];
 ---
 
 <Base title="Shashank Chikattimala | AI Engineer and Technical Lead">
     <section class="hero">
-        <span class="eyebrow">
-            <span class="dot"></span> Charlotte, NC &middot; open to AI
-            engineering roles
-        </span>
-        <h1>
-            I build <span class="grad">production AI systems</span> that fail
-            loudly, not silently.
-        </h1>
-        <p class="lead">
-            Most AI demos stop at "it answers." I build the part that comes
-            after: retrieval you can measure, guardrails you can test, and
-            evaluations that fail the build when quality drops. By day I lead
-            a front-end team at Lowe's.
-        </p>
-        <div class="cta">
-            <a class="btn primary" href="/projects">
-                See my projects
-            </a>
-            <a class="btn" href="/resume.pdf" target="_blank" rel="noopener">
-                Download resume
-            </a>
-            <a class="btn" href="https://github.com/shashankcm">
-                GitHub
-            </a>
+        <div class="term intro">
+            <div class="term-bar"><i></i><i></i><i></i><span class="title">~/shashank: zsh</span></div>
+            <div class="term-body">
+                <p class="cmd"><span>~/shashank $</span> <b>whoami</b></p>
+                <h1 class="out">Shashank Chikattimala</h1>
+                <p class="statement out">
+                    I build AI systems that are measured before they are trusted:
+                    retrieval, guardrails and evaluation, with checks that run in CI.
+                </p>
+                <p class="cmd"><span>~/shashank $</span> <b>cat status.txt</b></p>
+                <p class="out dim">
+                    Charlotte, NC &middot; Open to AI engineering roles &middot;
+                    Leads a front-end team at Lowe's
+                </p>
+                <p class="cmd"><span>~/shashank $</span> <span class="cursor" aria-hidden="true"></span></p>
+            </div>
+        </div>
+        <div class="cta intro d2">
+            <a class="btn primary" href="/projects">cd projects</a>
+            <a class="btn" href="/resume.pdf" target="_blank" rel="noopener">open resume.pdf</a>
+            <a class="btn" href="https://github.com/shashankcm">open github</a>
         </div>
     </section>
 
-    <h2>
-        <small>Featured work</small>AI projects
-    </h2>
-    <div class="cards">
+    <h2 class="sh">ls projects/</h2>
+    <ul class="rows">
         {projects.map((p) => (
-            <ProjectCard id={p.id} {...p.data} />
+            <ProjectRow id={p.id} {...p.data} />
         ))}
-    </div>
-    <p class="lead" style="margin-top:1.2rem;font-size:.95rem">
-        Each project has a case study with the architecture, what's built so
-        far, and the limits. Next up: a small-model serving benchmark. Numbers
-        are published only after they have been measured.
+    </ul>
+    <p class="label" style="margin-top:1rem">
+        Each project has a case study with the architecture, what is built, and
+        the limits. Numbers are published only after they have been measured.
     </p>
 
-    <h2>
-        <small>Toolbox</small>What I work with
-    </h2>
-    <div class="skills">
-        {skills.map(([t, d]) => (
-            <div class="skill">
-                <h3>{t}</h3>
-                <p>{d}</p>
-            </div>
+    <h2 class="sh">cat stack.yaml</h2>
+    <dl class="kv">
+        {stack.map(([t, d]) => (
+            <>
+                <dt>{t}</dt>
+                <dd>{d}</dd>
+            </>
         ))}
-    </div>
+    </dl>
 </Base>

@@ -6,7 +6,7 @@ interface Props {
 }
 const {
     title,
-    description = "Shashank Chikattimala - Senior Software Engineer building production AI systems: RAG, agents and LLM infrastructure.",
+    description = "Shashank Chikattimala: AI engineer building RAG, agents and evaluation systems that are measured before they are trusted.",
 } = Astro.props;
 ---
 
@@ -15,6 +15,7 @@ const {
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="color-scheme" content="light dark" />
         <meta name="description" content={description} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -25,20 +26,12 @@ const {
     <body>
         <header class="site">
             <div class="wrap">
-                <a class="brand" href="/">
-                    Shashank Chikattimala
-                </a>
+                <a class="brand" href="/">shashank</a>
                 <nav aria-label="Main">
                     <a href="/projects">Projects</a>
                     <a href="/writing">Writing</a>
                     <a href="/about">About</a>
-                    <a href="/about#contact">Contact</a>
-                    <a
-                        class="nav-resume"
-                        href="/resume.pdf"
-                        target="_blank"
-                        rel="noopener"
-                    >
+                    <a class="nav-resume" href="/resume.pdf" target="_blank" rel="noopener">
                         Resume
                     </a>
                 </nav>
@@ -51,9 +44,7 @@ const {
             <div class="wrap">
                 <span>&copy; {new Date().getFullYear()} Shashank Chikattimala</span>
                 <span>
-                    <a href="mailto:shashankuidev9@gmail.com">Email</a> &middot;
-                    <a href="https://github.com/shashankcm">GitHub</a> &middot;
-                    <a href="https://www.linkedin.com/in/shashankcm90">LinkedIn</a>
+                    <a href="mailto:shashankuidev9@gmail.com">Email</a> &middot; <a href="https://github.com/shashankcm">GitHub</a> &middot; <a href="https://www.linkedin.com/in/shashankcm90">LinkedIn</a>
                 </span>
             </div>
         </footer>
